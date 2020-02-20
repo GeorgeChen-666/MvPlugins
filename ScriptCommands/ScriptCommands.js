@@ -55,10 +55,10 @@
     }
   };
 })();
-class MvScript {
-  constructor(interpreter, indent = 0) {
+class MvCommand {
+  constructor(interpreter, indent) {
     this.interpreter = interpreter;
-    this.indent = indent;
+    this.indent = indent || this.interpreter._indent;
   }
 
   showText(
@@ -81,7 +81,7 @@ class MvScript {
   }
   showChoices(
     choiceData,
-    { cancelType, defaultType = 0, positionType = 2, background = 0 }
+    { cancelValue = -2, defaultValue = 0, positionType = 2, background = 0 }
   ) {
     this.interpreter.insertCommands([
       {
@@ -89,8 +89,8 @@ class MvScript {
         indent: this.indent,
         parameters: [
           choiceData,
-          cancelType,
-          defaultType,
+          cancelValue,
+          defaultValue,
           positionType,
           background
         ]
@@ -98,7 +98,15 @@ class MvScript {
     ]);
     return this;
   }
-  whenChoicesIndex() {} //402
+  whenChoicesIndex(index, subCommand) {
+    this.interpreter.insertCommands([
+      { code: 402, indent: this.indent, parameters: [index] }
+    ]);
+    this.indent++;
+    subCommand.call(this, this);
+    this.indent--;
+    return this;
+  }
   whenChoicesElse() {} //403
   endChoices() {} //404
 }
