@@ -55,6 +55,7 @@
     }
   };
 })();
+
 class MvCommand {
   constructor(interpreter, indent) {
     this.interpreter = interpreter;
@@ -658,19 +659,303 @@ class MvCommand {
     });
     return this;
   }
-  addGold(value) {
+  changeGold(amount) {
     this.commands.push({
       code: 125,
       indent: this.indent,
-      parameters: [0, 0, value]
+      parameters: [0, 0, amount]
     });
     return this;
   }
-  addItem(itemId, count) {
+  changeItem(itemId, amount) {
     this.commands.push({
-      code: 125,
+      code: 126,
       indent: this.indent,
-      parameters: [itemId, 0, 0, count]
+      parameters: [itemId, 0, 0, amount]
+    });
+    return this;
+  }
+  changeWeapons(weaponId, amount, includeEquip) {
+    this.commands.push({
+      code: 127,
+      indent: this.indent,
+      parameters: [weaponId, 0, 0, amount, includeEquip]
+    });
+    return this;
+  }
+  changeArmors(armorId, amount, includeEquip) {
+    this.commands.push({
+      code: 128,
+      indent: this.indent,
+      parameters: [armorId, 0, 0, amount, includeEquip]
+    });
+    return this;
+  }
+  addPartyMember(actorId, isInitialize) {
+    this.commands.push({
+      code: 129,
+      indent: this.indent,
+      parameters: [actorId, 0, isInitialize]
+    });
+    return this;
+  }
+  removePartyMember(actorId) {
+    this.commands.push({
+      code: 129,
+      indent: this.indent,
+      parameters: [actorId, 1]
+    });
+    return this;
+  }
+  changeBattleBGM(battleBgm) {
+    this.commands.push({
+      code: 132,
+      indent: this.indent,
+      parameters: [battleBgm]
+    });
+    return this;
+  }
+  changeVictoryME(cictoryME) {
+    this.commands.push({
+      code: 133,
+      indent: this.indent,
+      parameters: [cictoryME]
+    });
+    return this;
+  }
+  changeSaveAccess(isAble) {
+    this.commands.push({
+      code: 134,
+      indent: this.indent,
+      parameters: [isAble]
+    });
+    return this;
+  }
+  changeMenuAccess(isAble) {
+    this.commands.push({
+      code: 135,
+      indent: this.indent,
+      parameters: [isAble]
+    });
+    return this;
+  }
+  changeEncounterDisable(isAble) {
+    this.commands.push({
+      code: 136,
+      indent: this.indent,
+      parameters: [isAble]
+    });
+    return this;
+  }
+  changeFormationAccess(isAble) {
+    this.commands.push({
+      code: 137,
+      indent: this.indent,
+      parameters: [isAble]
+    });
+    return this;
+  }
+  changeWindowColor(color) {
+    this.commands.push({
+      code: 138,
+      indent: this.indent,
+      parameters: [color]
+    });
+    return this;
+  }
+  changeDefeatME(defeatME) {
+    this.commands.push({
+      code: 139,
+      indent: this.indent,
+      parameters: [defeatME]
+    });
+    return this;
+  }
+  changeVehicleBGM(vehicleBGM) {
+    this.commands.push({
+      code: 140,
+      indent: this.indent,
+      parameters: [vehicleBGM]
+    });
+    return this;
+  }
+  transferPlayerDirect(mapId, x, y, d = 0, fadeType = 0) {
+    this.commands.push({
+      code: 201,
+      indent: this.indent,
+      parameters: [0, mapId, x, y, d, fadeType]
+    });
+    return this;
+  }
+  transferPlayerWithVariables(
+    variableMapId,
+    variableX,
+    variableY,
+    d = 0,
+    fadeType = 0
+  ) {
+    this.commands.push({
+      code: 201,
+      indent: this.indent,
+      parameters: [1, variableMapId, variableX, variableY, d, fadeType]
+    });
+    return this;
+  }
+  setVehicleLocationDirect(vehicleId, mapId, x, y) {
+    this.commands.push({
+      code: 202,
+      indent: this.indent,
+      parameters: [vehicleId, 0, mapId, x, y]
+    });
+    return this;
+  }
+  setVehicleLocationWithVariables(
+    vehicleId,
+    variableMapId,
+    variableX,
+    variableY
+  ) {
+    this.commands.push({
+      code: 202,
+      indent: this.indent,
+      parameters: [vehicleId, 1, variableMapId, variableX, variableY]
+    });
+    return this;
+  }
+  setEventLocationDirect(eventId, x, y, d) {
+    this.commands.push({
+      code: 203,
+      indent: this.indent,
+      parameters: [eventId, 0, x, y, d]
+    });
+    return this;
+  }
+  setEventLocationWithVariables(eventId, variableX, variableY, d) {
+    this.commands.push({
+      code: 203,
+      indent: this.indent,
+      parameters: [eventId, 1, variableX, variableY, d]
+    });
+    return this;
+  }
+  setEventLocationExchangeWithAnother(eventId, eventId1, d) {
+    this.commands.push({
+      code: 203,
+      indent: this.indent,
+      parameters: [eventId, 2, eventId1, , d]
+    });
+    return this;
+  }
+  scrollMap(direction, distance, speed) {
+    this.commands.push({
+      code: 204,
+      indent: this.indent,
+      parameters: [direction, distance, speed]
+    });
+    return this;
+  }
+  setMovementRoute() {}
+  gettingOnOffVehicles() {
+    this.commands.push({
+      code: 206,
+      indent: this.indent,
+      parameters: []
+    });
+    return this;
+  }
+  changeTransparency(isTransparent) {
+    this.commands.push({
+      code: 211,
+      indent: this.indent,
+      parameters: [isTransparent]
+    });
+    return this;
+  }
+  showAnimation(eventId, animationId, wait) {
+    this.commands.push({
+      code: 212,
+      indent: this.indent,
+      parameters: [eventId, animationId, wait]
+    });
+    return this;
+  }
+  showBalloonIcon(eventId, balloonId, wait) {
+    this.commands.push({
+      code: 213,
+      indent: this.indent,
+      parameters: [eventId, balloonId, wait]
+    });
+    return this;
+  }
+  eraseEvent(eventId) {
+    this.commands.push({
+      code: 214,
+      indent: this.indent,
+      parameters: [eventId]
+    });
+    return this;
+  }
+  changePlayerFollowers(isShow = 0) {
+    this.commands.push({
+      code: 216,
+      indent: this.indent,
+      parameters: [isShow]
+    });
+    return this;
+  }
+  gatherFollowers() {
+    this.commands.push({
+      code: 217,
+      indent: this.indent,
+      parameters: []
+    });
+    return this;
+  }
+  fadeoutScreen() {
+    this.commands.push({
+      code: 221,
+      indent: this.indent,
+      parameters: []
+    });
+    return this;
+  }
+  fadeinScreen() {
+    this.commands.push({
+      code: 222,
+      indent: this.indent,
+      parameters: []
+    });
+    return this;
+  }
+  tintScreen(tone, duration, isWait) {
+    this.commands.push({
+      code: 223,
+      indent: this.indent,
+      parameters: [tone, duration, isWait]
+    });
+    return this;
+  }
+  flashScreen(color, duration, isWait) {
+    this.commands.push({
+      code: 224,
+      indent: this.indent,
+      parameters: [color, duration, isWait]
+    });
+    return this;
+  }
+  shakeScreen(power, speed, duration, isWait) {
+    this.commands.push({
+      code: 225,
+      indent: this.indent,
+      parameters: [power, speed, duration, isWait]
+    });
+    return this;
+  }
+  wait(duration) {
+    this.commands.push({
+      code: 230,
+      indent: this.indent,
+      parameters: [duration]
     });
     return this;
   }
