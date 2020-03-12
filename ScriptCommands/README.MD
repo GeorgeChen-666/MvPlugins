@@ -120,12 +120,8 @@
         * [.callJsFunction(jsFunction)](#$mvs+callJsFunction)
         * [.callPluginCommand(command)](#$mvs+callPluginCommand)
     * _static_
-        * [.ItemListGenerator](#$mvs.ItemListGenerator)
-            * [.addItem(id, [price])](#$mvs.ItemListGenerator+addItem)
-            * [.addWeapon(id, [price])](#$mvs.ItemListGenerator+addWeapon)
-            * [.addArmor(id, [price])](#$mvs.ItemListGenerator+addArmor)
-            * [.done()](#$mvs.ItemListGenerator+done)
-        * [.RouteCommandGenerator](#$mvs.RouteCommandGenerator)
+        * [.ItemListGenerator]
+        * [.RouteCommandGenerator]
 
 <a name="new_$mvs_new"></a>
 
