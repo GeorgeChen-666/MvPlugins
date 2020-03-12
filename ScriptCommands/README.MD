@@ -16,7 +16,7 @@
         * [.inputNumber(variableId, [maxDigits])](#$mvs+inputNumber)
         * [.selectItem(variableId, [itemType])](#$mvs+selectItem)
         * [.showScrollingText(textData, &#x3D;2,speed, &#x3D;false,noFast)](#$mvs+showScrollingText)
-        * [.whenFunctionIs(conditionFunction, subCommand)](#$mvs+whenFunctionIs)
+        * [.whenFunctionReturnTrue(conditionFunction, subCommand)](#$mvs+whenFunctionReturnTrue)
         * [.whenElse(subCommand)](#$mvs+whenElse)
         * [.loop(subCommand)](#$mvs+loop)
         * [.loopBreak()](#$mvs+loopBreak)
@@ -247,9 +247,9 @@
 | =2,speed | <code>number</code> | 速度1~8 |
 | =false,noFast | <code>boolean</code> | 禁止快进 |
 
-<a name="$mvs+whenFunctionIs"></a>
+<a name="$mvs+whenFunctionReturnTrue"></a>
 
-### $mvs.whenFunctionIs(conditionFunction, subCommand)
+### $mvs.whenFunctionReturnTrue(conditionFunction, subCommand)
 根据条件函数返回值创建分支
 
 **Kind**: instance method of [<code>$mvs</code>](#$mvs)
