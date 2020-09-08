@@ -130,7 +130,7 @@
   ) {
     this._character = this.character(actorId);
     if (this._character) {
-      this.character()._balloonText = text;
+      this.character(actorId)._balloonText = text;
       if (isWait) {
         this.setWaitMode("balloon");
       }
