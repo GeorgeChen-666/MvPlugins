@@ -713,7 +713,7 @@ class $mvs {
    * setMovementRoute(0, function (routeCommand) {\
    * return routeCommand.moveForward()\
    * .turn90dRL()\
-   * .end().getCommands(false,false,false);\
+   * .getCommands(false,false,false);\
    * })
    */
   setMovementRoute(
@@ -725,7 +725,7 @@ class $mvs {
       wait: false
     })
   ) {
-    const routeParameters = routeCommandFunc(new RouteCommandGenerator());
+    const routeParameters = routeCommandFunc(new $mvs.RouteCommandGenerator());
     this.commands.push({
       code: 205,
       indent: this.indent,
@@ -2030,7 +2030,7 @@ class $mvs {
    * 物品列表生成器
    * @property
    */
-  ItemListGenerator = class {
+  static ItemListGenerator = class {
     itemList = [];
     /**
      * 添加一个道具
@@ -2063,7 +2063,7 @@ class $mvs {
       return itemList;
     }
   };
-  RouteCommandGenerator = class {
+  static RouteCommandGenerator = class {
     constructor() {
       this.list = [];
     }
